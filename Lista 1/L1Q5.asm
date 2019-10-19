@@ -7,12 +7,12 @@ slt $t1, $s1, $zero # sinal de b ( 1 - negativo, 0 - positivo )
 xor $a0, $t0, $t1 # sinal de a * b ( 1 - negativo, 0 - positivo )
 
 MULT:
-	addi $s2, $zero, 0 # aux = 0, onde ser· salvo o resultado
+	addi $s2, $zero, 0 # aux = 0, onde ser√° salvo o resultado
 LOOP:
-	beq $s1, $zero, RESULT # se b == 0 ent„o para de somar ( ou subtrair )
+	beq $s1, $zero, RESULT # se b == 0 ent√£o para de somar ( ou subtrair )
 	
-	beq $t1, $zero, SUB_b # se o sinal de b for zero ent„o b È positivo e b deve ser decrementado para chegar em zero
-	SUM_b: addi $s1, $s1, 1 # se negativo, ent„o ser· incrementado // b += 1
+	beq $t1, $zero, SUB_b # se o sinal de b for zero ent√£o b √© positivo e b deve ser decrementado para chegar em zero
+	SUM_b: addi $s1, $s1, 1 # se negativo, ent√£o ser√° incrementado // b += 1
 		j Continue
 	SUB_b: addi $s1, $s1, -1 # b -= 1
 	Continue:
@@ -27,12 +27,12 @@ LOOP:
 RESULT:
 	bne $a0, $zero, Inverte # verificamos se o sinal do resulotado coincide com o sinal esperado
 	j EXIT
-	Inverte: # se nao coincidir, entaı inverto o sinal:
+	Inverte: # se nao coincidir, enta√µ inverto o sinal:
 		slt $t0, $s2, $zero
 		bne $t0, $zero, EXIT
 		add $s3, $zero, $s2
 		sub $s2, $s2, $s3
 		sub $s2, $s2, $s3
 
-EXIT: # No final, o resultado estar· armazenado em $s2.
+EXIT: # No final, o resultado estar√° armazenado em $s2.
 	
